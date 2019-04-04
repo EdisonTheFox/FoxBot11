@@ -10,34 +10,37 @@ By consolidating everything and writing it myself I can manage the code and admi
 
 ## Planned Featres
 
-+ Discord
-  + Greeting new users to The Terabytes Discord Server
-  + Auto Assigning A role to new users
-  + Moderation tools
-    + Auto Deleting messages containing known "Bad Words"
-    + Auto Deleting of Server invite links
-    + NONE OF THAT ZALGO HERE!
-    + Full logging framework using `discord.embed()` for all actions on the server
-  + A scoring system (in conjunction with Twitch scoring if possible)
-  + Posting a link to my stream when I go LIVE
-+ Twitch
-  + Simple commands to be implemented
-    + Twitter Advertising
-    + Donation link
-    + Discord link
-    + Uptime!
-  + Moderation of chat
-    + Deletion of messages with Known "bad words"
-    + Auto deleting of links for those who are not subscribers
-    + Auto deleting of self advertising for those who are not Moderators.
-    + Caps spam protection
-    + Logging of actions taken on users
-  + Scoring System, linked to Discord if possible
-  + Song Request (YouTube Links)
-    + Channel Playlist
-  + Request queue for Clone Hero
-  + Channel updates
-    + Title
-    + Game
+### Discord
+
++ Greeting new users to The Terabytes Discord Server
++ Auto Assigning A role to new users
++ Moderation tools
+  + Auto Deleting messages containing known "Bad Words"
+  + Auto Deleting of Server invite links
+  + NONE OF THAT ZALGO HERE!
+  + Full logging framework using `discord.embed()` for all actions on the server
++ A scoring system (in conjunction with Twitch scoring if possible)
++ Posting a link to my stream when I go LIVE
+
+### Twitch
+
++ Simple commands to be implemented
+  + Twitter Advertising
+  + Donation link
+  + Discord link
+  + Uptime!
++ Moderation of chat
+  + Deletion of messages with Known "bad words"
+  + Auto deleting of links for those who are not subscribers
+  + Auto deleting of self advertising for those who are not Moderators.
+  + Caps spam protection
+  + Logging of actions taken on users
++ Scoring System, linked to Discord if possible
++ Song Request (YouTube Links)
+  + Channel Playlist
++ Request queue for Clone Hero
++ Channel updates
+  + Title
+  + Game
 
 I realise now this is a lot of features!

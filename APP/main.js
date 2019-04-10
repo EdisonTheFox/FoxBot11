@@ -1,8 +1,13 @@
 const Discord = require('discord.js');
-const client = new Discord.Client();
+const Client = new Discord.Client();
+const Calls = require('./Modules/discordCalls.js');
 
-client.on('ready', () => {
-    console.log(`Logged in as ${client.user.tag}!`);
+Client.on('ready', () => {
+    console.log(`Logged in as ${Client.user.tag}!`);
 });
 
-client.login('TOKEN HERE');
+Client.on('guildMemberAdd', member => {
+    Calls.newMember(member);
+});
+
+Client.login('TOKEN HERE');

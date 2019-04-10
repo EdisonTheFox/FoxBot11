@@ -36,6 +36,7 @@ By consolidating everything and writing it myself I can manage the code and admi
   + Caps spam protection
   + Logging of actions taken on users
 + Scoring System, linked to Discord if possible
+  + Point Gambling system
 + Song Request (YouTube Links)
   + Channel Playlist
 + Request queue for Clone Hero

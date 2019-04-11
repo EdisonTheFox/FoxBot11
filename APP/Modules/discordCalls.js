@@ -1,14 +1,14 @@
-//declaring Logging channel here as this is a globally used channel
-const loggingChannel = memberName.guild.channels.find(ch => ch.name === 'bot-logs');
+//Store the Server Name as a variable for later
 const serverName = memberName.guild.name();
+const logger = require('./discordLogging.js');
 
-function newMember(memberName){
+function newMember(memberName) {
     //This is the channel to post the welcome message to
-    const channel = memberName.guild.channels.find(ch => ch.name==='welcome');
+    const channel = memberName.guild.channels.find(ch => ch.name === 'welcome');
     var kilobyesRoleID = '281581612414795787';
-    
+
     //Check that the channel exists, if it doesn't break out of the function gracefully
-    if(!channel){
+    if (!channel) {
         console.log(`Channel with the name: ${channel}, Was not found.`);
         return;
     }
@@ -21,6 +21,15 @@ function newMember(memberName){
     memberName.addRole(kilobyesRoleID);
     console.log(`Gave ${memberName} the ${kilobyesRoleID} role!`);
 
+    /**
+     * Logging *
+     */
+
+    //New user
+    logger.userNew(memberName);
+
+    //role Updated
+    logger.userRoleUpdated(memberName, kilobyesRoleID);
 }
 
 module.exports = {

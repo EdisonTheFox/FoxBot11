@@ -82,3 +82,6 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+
+# VS Code Workspace
+.code-Wwrkspace

@@ -4,6 +4,8 @@
  */
 
 const discord = require('discord.js');
+
+//globaly define the embed object
 const embed = discord.RichEmbed();
 
 function embedNew(title, body) {

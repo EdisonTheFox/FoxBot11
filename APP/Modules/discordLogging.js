@@ -20,6 +20,8 @@ function userNew(memberName) {
 function userRoleUpdated(memberName, roleID) {
     var title = 'User Role Updated';
     var body = `${memberName} was given the ${roleID} role.`
+
+    //Log the role update to thelogging channel
     loggingChannel.send(embed.embedUserUpdate(title, roleID));
     return;
 }

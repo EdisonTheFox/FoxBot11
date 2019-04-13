@@ -6,11 +6,11 @@
 const discord = require('discord.js');
 
 //globaly define the embed object
-const embed = discord.RichEmbed();
+const embed = new discord.RichEmbed();
 
 function embedNew(title, body) {
     embed.setTitle(title);
-    embed.setBody(body);
+    embed.setDescription(body);
     embed.setColor('GREEN');
     embed.setTimestamp();
 
@@ -19,7 +19,7 @@ function embedNew(title, body) {
 
 function embedUserUpdate(title, body){
     embed.setTitle(title);
-    embed.setBody(body)
+    embed.setDescription(body)
     embed.setTimestamp();
     embed.setColor('ORANGE');
     return embed;

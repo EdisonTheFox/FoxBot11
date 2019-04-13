@@ -1,5 +1,4 @@
 //Store the Server Name as a variable for later
-const serverName = memberName.guild.name();
 const logger = require('./discordLogging.js');
 
 function newMember(memberName) {
@@ -14,7 +13,7 @@ function newMember(memberName) {
     }
 
     //send a message to the #welcome channel greeting the user
-    channel.send(`Welcome to ${serverName}, ${memberName}! Please read the rules in #rules-and-guidelines and enjoy your stay!`);
+    channel.send(`Welcome to the server, ${memberName}! Please read the rules in <#539378325613707265> and enjoy your stay!`);
     console.log(`${memberName} Joined the server!`);
 
     //Assign the new memeber the Kilobytes Role

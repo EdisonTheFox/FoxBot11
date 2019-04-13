@@ -10,4 +10,4 @@ Client.on('guildMemberAdd', member => {
     Calls.newMember(member);
 });
 
-Client.login('NTUyODQ1MDI4NzU0NTg3Njgw.XLJOSw.CqY0L_X5pQSsl1Xbw6RWYeVG47A');
+Client.login('TOKEN');

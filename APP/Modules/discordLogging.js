@@ -14,6 +14,7 @@ function userNew(memberName) {
 
     //Log the new member in the logging channel
     loggingChannel.send(embed.embedNew(title, body));
+    console.log(body);
     return;
 }
 
@@ -24,10 +25,19 @@ function userRoleUpdated(memberName, roleID) {
 
     //Log the role update to thelogging channel
     loggingChannel.send(embed.embedUserUpdate(title, body));
+    console.log(body);
     return;
+}
+
+function userLeave(memberName) {
+    const loggingChannel = memberName.guild.channels.find(ch => ch.name === 'bot-logs');
+    var title = 'User Left';
+    var body = `${memberName} has left the server.`;
+    loggingChannel.send(embed.embedUserRemove(title, body));
 }
 
 module.exports = {
     userNew,
-    userRoleUpdated
+    userRoleUpdated,
+    userLeave
 }

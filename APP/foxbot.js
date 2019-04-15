@@ -10,4 +10,8 @@ Client.on('guildMemberAdd', member => {
     Calls.newMember(member);
 });
 
+Client.on("guildMemeberRemove", member => {
+    Calls.memberRemove(member);
+});
+
 Client.login('TOKEN');

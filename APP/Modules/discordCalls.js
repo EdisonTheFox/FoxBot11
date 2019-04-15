@@ -31,6 +31,11 @@ function newMember(memberName) {
     logger.userRoleUpdated(memberName, kilobyesRoleID);
 }
 
+function memberRemove(memberName) {
+    logger.userLeave(memberName)
+}
+
 module.exports = {
-    newMember
+    newMember,
+    memberRemove
 }

@@ -17,7 +17,7 @@ function embedNew(title, body) {
     return embed;
 }
 
-function embedUserUpdate(title, body){
+function embedUserUpdate(title, body) {
     embed.setTitle(title);
     embed.setDescription(body)
     embed.setTimestamp();
@@ -25,7 +25,15 @@ function embedUserUpdate(title, body){
     return embed;
 }
 
-module.exports ={
+function embedUserRemove(title, body) {
+    embed.setTitle(title);
+    embed.setDescription(body);
+    embed.setTimestamp();
+    embed.setColor('RED');
+}
+
+module.exports = {
     embedNew,
-    embedUserUpdate
+    embedUserUpdate,
+    embedUserRemove
 }

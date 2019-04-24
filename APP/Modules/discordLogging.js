@@ -23,7 +23,7 @@ function userRoleUpdated(memberName, roleID) {
     var title = 'User Role Updated';
     var body = `${memberName} was given the <@&` + roleID + `> role.`
 
-    //Log the role update to thelogging channel
+    //Log the role update to the logging channel
     loggingChannel.send(embed.embedUserUpdate(title, body));
     console.log(body);
     return;
@@ -36,8 +36,22 @@ function userLeave(memberName) {
     loggingChannel.send(embed.embedUserRemove(title, body));
 }
 
+function userKicked(member, author) {
+    const loggingChannel = member.guild.channels.find(ch => ch.name === 'bot-logs');
+    var title = 'User Kicked';
+    var body = `${member} has been kicked by ${author}.`;
+    loggingChannel.send(ember.embedUserRemove(title, body));
+}
+
+function invalidActionTaken(member, action){
+    const loggingChannel = member.guild.channels.find(ch=>ch.name==='bot-logs');
+    loggingChannel.send(`<@&347124301347946496>, <@198192592620355584>. ${member} has just tried to ${action}`);
+}
+
 module.exports = {
     userNew,
     userRoleUpdated,
-    userLeave
+    userLeave,
+    userKicked,
+    invalidActionTaken
 }

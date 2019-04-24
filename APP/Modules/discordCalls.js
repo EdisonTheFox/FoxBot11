@@ -1,3 +1,7 @@
+/**
+ * This module is for core discord calls. Modearion is separate
+ */
+
 //Store the Server Name as a variable for later
 const logger = require('./discordLogging.js');
 

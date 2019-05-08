@@ -37,6 +37,17 @@ Client.on("message", message => {
             logger.invalidActionTaken(message.guild.member(message.author).id, 'Kick a user');
         }
     }
+
+    /**
+     * Fun Commands!
+     */
+
+    /**
+     * All other messages
+     */
+    else{
+        //Score Points
+    }
 })
 
 Client.login('TOKEN');

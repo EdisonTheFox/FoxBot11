@@ -41,11 +41,52 @@ function disconnectDB() {
     return;
 }
 
-function queryInsertDB(sqlQuery) {
+function incrementScoreDB(discordUID, score) {
+    //Format SQL with Given Parameters:
+    var checkUserExists = 'SELECT COUNT * FROM Scores WHERE DiscordID = \'' + discordUID + '\';'
+    var addScore = 'UPDATE Scores SET score = score + ' + score + ' WHERE DiscordID = \'' + discordUID + '\';'
+
     //Open Connection to the Database
     connectDB();
 
     //DO DATABASE MAGIC HERE
+    //Check user is in DB
+    conn.query(checkUserExists, function (err, results, field) {
+        if (err) {
+            throw (err)
+        } else {
+            console.log('Found: ' + results + ' Results!');
+            if (results === 1) {
+                //increment score
+                conn.query(addScore, function(err,results,field){
+                    if(err){
+                        throw(err);
+                    }
+                    console.log('Score updated!');
+                })
+            } else {
+                queryNewUserDB(discordUID);
+            }
+        }
+    })
+    //Close Connection to save Bandwidth
+    disconnectDB()
+
+    return;
+}
+
+function queryNewUserDB(discordUID) {
+    var query = 'INSERT INTO Scores (DiscordID, Score) VALUES(\''+discordUID+'\', 25';
+    //Open Connection to the Database
+    connectDB();
+
+    //DO DATABASE MAGIC HERE
+    conn.query(query, function(err,results,field){
+        if(err){
+            throw(err);
+        }
+        console.log('User Added!');
+    })
 
     //Close Connection to save Bandwidth
     disconnectDB()
@@ -53,19 +94,6 @@ function queryInsertDB(sqlQuery) {
     return;
 }
 
-function queryReadDB(sqlQuery){
-        //Open Connection to the Database
-        connectDB();
-
-        //DO DATABASE MAGIC HERE
-    
-        //Close Connection to save Bandwidth
-        disconnectDB()
-    
-        return;
-}
-
 module.exports = {
-    queryInsertDB,
-    queryReadDB
+    incrementScoreDB
 }

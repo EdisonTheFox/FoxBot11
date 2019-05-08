@@ -41,7 +41,7 @@ function disconnectDB() {
     return;
 }
 
-function queryDB(sqlQuery) {
+function queryInsertDB(sqlQuery) {
     //Open Connection to the Database
     connectDB();
 
@@ -53,6 +53,19 @@ function queryDB(sqlQuery) {
     return;
 }
 
+function queryReadDB(sqlQuery){
+        //Open Connection to the Database
+        connectDB();
+
+        //DO DATABASE MAGIC HERE
+    
+        //Close Connection to save Bandwidth
+        disconnectDB()
+    
+        return;
+}
+
 module.exports = {
-    queryDB
+    queryInsertDB,
+    queryReadDB
 }

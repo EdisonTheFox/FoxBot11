@@ -40,7 +40,7 @@ function userKicked(member, author) {
     const loggingChannel = member.guild.channels.find(ch => ch.name === 'bot-logs');
     var title = 'User Kicked';
     var body = `${member} has been kicked by ${author}.`;
-    loggingChannel.send(ember.embedUserRemove(title, body));
+    loggingChannel.send(member.embedUserRemove(title, body));
 }
 
 function invalidActionTaken(member, action){

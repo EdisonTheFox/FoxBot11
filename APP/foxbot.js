@@ -50,4 +50,4 @@ Client.on("message", message => {
     }
 })
 
-Client.login('TOKEN');
+Client.login('NTUyODQ1MDI4NzU0NTg3Njgw.XN_Smw.RXNjqAxYKpdZeQ9qjswmsM0uyiE');

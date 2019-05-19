@@ -14,7 +14,7 @@ function userNew(memberName) {
 
     //Log the new member in the logging channel
     loggingChannel.send(embed.embedNew(title, body));
-    console.log(body);
+    //console.log(body);
     return;
 }
 
@@ -25,7 +25,7 @@ function userRoleUpdated(memberName, roleID) {
 
     //Log the role update to the logging channel
     loggingChannel.send(embed.embedUserUpdate(title, body));
-    console.log(body);
+    //console.log(body);
     return;
 }
 

@@ -32,7 +32,7 @@ Client.on("message", message => {
      */
 
     //Kick command
-    if (message.content.startsWith('!kick')) {
+    else if (message.content.startsWith('!kick')) {
         //checks if authour has permission to kick users
         if (message.guild.member(message.author).hasPermission('KICK_MEMBERS')) {
             moderator.kickUser(message);
@@ -43,8 +43,22 @@ Client.on("message", message => {
     }
 
     /**
+     * Social Medias
+     */
+    else if (message.content.startsWith('!twitter')){
+        message.reply('Edison\'s Twitter account can be found here: https://twitter.com/edisonthefox');
+    }
+    else if( message.content.startsWith('!youtube')){
+        message.reply('Edison\'s YouTube channel can be found here: https://www.youtube.com/channel/UC1T30bSl69LFeDdLa0YbM8A');
+    }
+
+    /**
      * Fun Commands!
      */
+    //rutland
+    else if (message.content.startsWith('!rutland')){
+        message.reply('Rutland is a conspiracy...');
+    }
 
     /**
      * All other messages

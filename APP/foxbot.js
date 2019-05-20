@@ -3,7 +3,11 @@ const Client = new Discord.Client();
 const Calls = require('./Modules/discordCalls.js');
 const moderator = require('./Modules/discordModeration.js');
 const logger = require('./Modules/discordLogging');
+const scoring = require('./Modules/scoring.js');
 
+/**
+ * DISCORD HANDELERS
+ */
 Client.on('ready', () => {
     console.log(`Logged in as ${Client.user.tag}!`);
 });
@@ -47,7 +51,12 @@ Client.on("message", message => {
      */
     else{
         //Score Points
+        scoring.discordScoreAdd(message.guild.member(message.author));
     }
 })
 
 Client.login('NTUyODQ1MDI4NzU0NTg3Njgw.XN_Smw.RXNjqAxYKpdZeQ9qjswmsM0uyiE');
+
+/**
+ * TWITCH HANDELERS
+ */

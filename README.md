@@ -6,14 +6,19 @@
 ## Why Build a bot, there are loads
 
 Firstly I want to consolidate all the bots and services I use. This currently includes StreamLabs, MEE6, Rhythm (This was a planned addition to my server) and NightBot (rarely use this but I do on occasion).
-By consolidating everything and writing it myself I can manage the code and admin without clunky interfaces and remembering the multitude of sites that help manage the afformentioned bots.
+By consolidating everything and writing it myself I can manage the code and admin without clunky interfaces and remembering the multitude of sites that help manage the aforementioned bots.
 
-## Planned Featres
+## Features Finished!
 
 ### Discord
 
 + Greeting new users to The Terabytes Discord Server
 + Auto Assigning A role to new users
+
+## Planned Features
+
+### Discord
+
 + Moderation tools
   + Auto Deleting messages containing known "Bad Words"
   + Auto Deleting of Server invite links

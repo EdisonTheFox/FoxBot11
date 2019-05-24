@@ -5,13 +5,12 @@
   "main": "foxbot.js",
   "dependencies": {
     "discord.js": "^11.4.2",
-    "mysql": "^2.17.1"
+    "mongodb": "^3.2.6"
   },
   "devDependencies": {},
   "scripts": {
-    "install": "sudo npm install",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "sudo node APP/foxbot.js"
+    "install": "",
+    "start": "node ./APP/foxbot.js"
   },
   "repository": {
     "type": "git",

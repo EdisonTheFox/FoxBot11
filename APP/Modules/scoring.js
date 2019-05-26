@@ -11,16 +11,18 @@
 const discord = require('discord.js');
 
 function generateScore() {
-    return Math.floor(Math.random() * Math.floor(25));
+  min = Math.ceil(1);
+  max = Math.floor(20);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 function discordScoreAdd(member) {
-    var memberName = member.user.tag;
-    var scoreAddValue = generateScore();
-    console.log(`Gave ${memberName} ${scoreAddValue} points!`);
-    //TODO: Add call to DB to add score to user
+  var memberName = member.user.tag;
+  var scoreAddValue = generateScore();
+  console.log(`Gave ${memberName} ${scoreAddValue} points!`);
+  //TODO: Add call to DB to add score to user
 }
 
 module.exports = {
-    discordScoreAdd
+  discordScoreAdd
 }

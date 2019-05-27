@@ -75,3 +75,7 @@ function dbScoreAdd(discordID, points) {
     })
   )};
 }
+
+module.exports = {
+  dbScoreAdd
+}

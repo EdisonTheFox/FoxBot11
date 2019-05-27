@@ -9,6 +9,7 @@
  */
 
 const discord = require('discord.js');
+const database = require('./DatabaseHandler.js');
 
 function generateScore() {
   min = Math.ceil(1);
@@ -21,6 +22,7 @@ function discordScoreAdd(member) {
   var scoreAddValue = generateScore();
   console.log(`Gave ${memberName} ${scoreAddValue} points!`);
   //TODO: Add call to DB to add score to user
+  database.dbScoreAdd(member, scoreAddValue);
 }
 
 module.exports = {

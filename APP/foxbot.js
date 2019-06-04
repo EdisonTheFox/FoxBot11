@@ -1,9 +1,23 @@
+/**
+ * Discord APIs
+ */
 const Discord = require('discord.js');
 const Client = new Discord.Client();
 const Calls = require('./Modules/discordCalls.js');
 const moderator = require('./Modules/discordModeration.js');
 const logger = require('./Modules/discordLogging');
-const scoring = require('./Modules/scoring.js');
+/**
+ * Database APIs
+ */
+const MongoClient = require('mongodb').MongoClient;
+const uri = 'mongodb+srv://foxbot:twihUBFp6nQkiySt@edisonthefox-4czwj.gcp.mongodb.net/test?retryWrites=true&w=majority';
+const client = new MongoClient(uri, {
+    useNewUrlParser: true
+});
+
+/**
+ * Twitch APIs
+ */
 
 /**
  * DISCORD HANDELERS
@@ -36,7 +50,7 @@ Client.on("message", message => {
         //checks if authour has permission to kick users
         if (message.guild.member(message.author).hasPermission('KICK_MEMBERS')) {
             moderator.kickUser(message);
-        } else{
+        } else {
             message.reply('You do not have permission to do that. You attempt has been logged and moderators notified.');
             logger.invalidActionTaken(message.guild.member(message.author).id, 'Kick a user');
         }
@@ -45,10 +59,9 @@ Client.on("message", message => {
     /**
      * Social Medias
      */
-    else if (message.content.startsWith('!twitter')){
+    else if (message.content.startsWith('!twitter')) {
         message.reply('Edison\'s Twitter account can be found here: https://twitter.com/edisonthefox');
-    }
-    else if( message.content.startsWith('!youtube')){
+    } else if (message.content.startsWith('!youtube')) {
         message.reply('Edison\'s YouTube channel can be found here: https://www.youtube.com/channel/UC1T30bSl69LFeDdLa0YbM8A');
     }
 
@@ -56,16 +69,29 @@ Client.on("message", message => {
      * Fun Commands!
      */
     //rutland
-    else if (message.content.startsWith('!rutland')){
+    else if (message.content.startsWith('!rutland')) {
         message.reply('Rutland is a conspiracy...');
     }
 
     /**
      * All other messages
      */
-    else{
+    else {
         //Score Points
-        scoring.discordScoreAdd(message.guild.member(message.author));
+        //scoring.discordScoreAdd(message.guild.member(message.author));
+        //Connect to the DB
+        client.connect(err => {
+            const collection = client.db('foxbot').collection('scores');
+            //Score points here:
+            try{
+            collection.updateOne({'name': message.guild.member(message.author).id}, {$inc: {'score': generateScore()}}, {upsert: true});
+            console.log('User Score updated');
+            } catch(err){
+                console.log(err);
+            }
+            //close DB connection because we are finished.
+            client.close();
+        });
     }
 })
 
@@ -74,3 +100,13 @@ Client.login('NTUyODQ1MDI4NzU0NTg3Njgw.XN_Smw.RXNjqAxYKpdZeQ9qjswmsM0uyiE');
 /**
  * TWITCH HANDELERS
  */
+
+ /**
+  * Other Functions for core functionality
+  */
+
+function generateScore() {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}

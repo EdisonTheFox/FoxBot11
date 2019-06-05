@@ -5,7 +5,8 @@
   "main": "foxbot.js",
   "dependencies": {
     "discord.js": "^11.4.2",
-    "mongodb": "^3.2.6"
+    "mongodb": "^3.2.6",
+    "assert": "^2.0.0"
   },
   "devDependencies": {},
   "scripts": {

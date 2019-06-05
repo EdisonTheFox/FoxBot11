@@ -11,13 +11,15 @@ const logger = require('./Modules/discordLogging');
  */
 const MongoClient = require('mongodb').MongoClient;
 const uri = 'mongodb+srv://foxbot:twihUBFp6nQkiySt@edisonthefox-4czwj.gcp.mongodb.net/test?retryWrites=true&w=majority';
-const client = new MongoClient(uri, {
-    useNewUrlParser: true
-});
 
 /**
  * Twitch APIs
  */
+
+ /**
+  * Other APIs
+  */
+ const assert = require('assert');
 
 /**
  * DISCORD HANDELERS
@@ -80,18 +82,26 @@ Client.on("message", message => {
         //Score Points
         //scoring.discordScoreAdd(message.guild.member(message.author));
         //Connect to the DB
-        client.connect(err => {
-            const collection = client.db('foxbot').collection('scores');
-            //Score points here:
+        (async function(){
+            const client = new MongoClient(uri, {useNewUrlParser:true});
             try{
-            collection.updateOne({'name': message.guild.member(message.author).id}, {$inc: {'score': generateScore()}}, {upsert: true});
-            console.log('User Score updated');
-            } catch(err){
+                await client.connect();
+                console.log('Connected to the Database');
+                
+                const db = client.db('foxbot');
+                const collection = db.collection('scores');
+                let r;
+                const score = generateScore();
+
+                r = await collection.updateOne({name:message.guild.member(message.author).id}, {$inc:{score:score}},{upsert:true});
+                assert.equal(1, r.matchedCount);
+                assert.equal(0, r.upsertedCount);
+                console.log(`gave ${message.author.tag} ${score} points`);
+            }catch(err){
                 console.log(err);
             }
-            //close DB connection because we are finished.
             client.close();
-        });
+        })();
     }
 })
 
@@ -101,12 +111,15 @@ Client.login('NTUyODQ1MDI4NzU0NTg3Njgw.XN_Smw.RXNjqAxYKpdZeQ9qjswmsM0uyiE');
  * TWITCH HANDELERS
  */
 
- /**
-  * Other Functions for core functionality
-  */
+/**
+ * Other Functions for core functionality
+ */
 
 function generateScore() {
+    var min = 1;
+    var max = 20;
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+

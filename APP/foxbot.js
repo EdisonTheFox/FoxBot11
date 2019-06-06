@@ -61,9 +61,12 @@ Client.on("message", message => {
     /**
      * Social Medias
      */
+    //Twitter
     else if (message.content.startsWith('!twitter')) {
         message.reply('Edison\'s Twitter account can be found here: https://twitter.com/edisonthefox');
-    } else if (message.content.startsWith('!youtube')) {
+    }
+    //YouTube 
+    else if (message.content.startsWith('!youtube')) {
         message.reply('Edison\'s YouTube channel can be found here: https://www.youtube.com/channel/UC1T30bSl69LFeDdLa0YbM8A');
     }
 
@@ -73,6 +76,32 @@ Client.on("message", message => {
     //rutland
     else if (message.content.startsWith('!rutland')) {
         message.reply('Rutland is a conspiracy...');
+    }
+    //Cute
+    else if(message.content.startsWith('!cute')){
+        message.reply('NO U!');
+    }
+    //hug
+    else if(message.content.startsWith('!hug')){
+        message.reply('*hugs you cybernetically*');
+    }
+    //awooo
+    else if(message.content.startsWith('!awooo')){
+        message.reply('Shhh.... You\'ll start a howl!');
+    }
+
+    /**
+     * Scoring Commands
+     */
+    //User score
+    else if(message.content.startsWith('!points')){
+        message.reply('This function will be added soon!');
+        //connect to the database and print the users points value and current rank
+    }
+    //Server Leaderboard
+    else if (message.content.startsWith('!leaderboard')){
+        message.reply('This function will be added soon!');
+        //Connect to the data base and print the top 10 memebers in points order
     }
 
     /**

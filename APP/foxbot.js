@@ -2,7 +2,8 @@
  * Discord APIs
  */
 const Discord = require('discord.js');
-const Client = new Discord.Client();
+const DiscordClient = new Discord.Client();
+const DiscordToken = 'NTUyODQ1MDI4NzU0NTg3Njgw.XN_Smw.RXNjqAxYKpdZeQ9qjswmsM0uyiE';
 const Calls = require('./Modules/discordCalls.js');
 const moderator = require('./Modules/discordModeration.js');
 const logger = require('./Modules/discordLogging');
@@ -15,31 +16,41 @@ const uri = 'mongodb+srv://foxbot:twihUBFp6nQkiySt@edisonthefox-4czwj.gcp.mongod
 /**
  * Twitch APIs
  */
-
- /**
-  * Other APIs
-  */
- const assert = require('assert');
+const tmi = require('tmi.js');
+const opts = {
+    identity: {
+        username: 'FoxBot11',
+        password: 'oauth:k9x8qymrea5xkhv197mncoe5f3xfxc'
+    },
+    channels: [
+        'edisonthefox'
+    ]
+};
+const TwitchClient = new tmi.client(opts);
+/**
+ * Other APIs
+ */
+const assert = require('assert');
 
 /**
  * DISCORD HANDELERS
  */
-Client.on('ready', () => {
-    console.log(`Logged in as ${Client.user.tag}!`);
+DiscordClient.on('ready', () => {
+    console.log(`Logged in as ${DiscordClient.user.tag}!`);
 });
 
 //Listener function for new members to the server
-Client.on('guildMemberAdd', member => {
+DiscordClient.on('guildMemberAdd', member => {
     Calls.newMember(member);
 });
 
 //A user has left the server
-Client.on("guildMemeberRemove", member => {
+DiscordClient.on("guildMemeberRemove", member => {
     Calls.memberRemove(member);
 });
 
 //Messages listener for commands to be passed to the bot
-Client.on("message", message => {
+DiscordClient.on("message", message => {
     //Ignore Messages that arent from a guild
     if (!message.guild) return;
 
@@ -78,15 +89,15 @@ Client.on("message", message => {
         message.reply('Rutland is a conspiracy...');
     }
     //Cute
-    else if(message.content.startsWith('!cute')){
+    else if (message.content.startsWith('!cute')) {
         message.reply('NO U!');
     }
     //hug
-    else if(message.content.startsWith('!hug')){
+    else if (message.content.startsWith('!hug')) {
         message.reply('*hugs you cybernetically*');
     }
     //awooo
-    else if(message.content.startsWith('!awooo')){
+    else if (message.content.startsWith('!awooo')) {
         message.reply('Shhh.... You\'ll start a howl!');
     }
 
@@ -94,12 +105,12 @@ Client.on("message", message => {
      * Scoring Commands
      */
     //User score
-    else if(message.content.startsWith('!points')){
+    else if (message.content.startsWith('!points')) {
         message.reply('This function will be added soon!');
         //connect to the database and print the users points value and current rank
     }
     //Server Leaderboard
-    else if (message.content.startsWith('!leaderboard')){
+    else if (message.content.startsWith('!leaderboard')) {
         message.reply('This function will be added soon!');
         //Connect to the data base and print the top 10 memebers in points order
     }
@@ -111,22 +122,32 @@ Client.on("message", message => {
         //Score Points
         //scoring.discordScoreAdd(message.guild.member(message.author));
         //Connect to the DB
-        (async function(){
-            const client = new MongoClient(uri, {useNewUrlParser:true});
-            try{
+        (async function () {
+            const client = new MongoClient(uri, {
+                useNewUrlParser: true
+            });
+            try {
                 await client.connect();
                 console.log('Connected to the Database');
-                
+
                 const db = client.db('foxbot');
                 const collection = db.collection('scores');
                 let r;
                 const score = generateScore();
 
-                r = await collection.updateOne({name:message.guild.member(message.author).id}, {$inc:{score:score}},{upsert:true});
+                r = await collection.updateOne({
+                    name: message.guild.member(message.author).id
+                }, {
+                    $inc: {
+                        score: score
+                    }
+                }, {
+                    upsert: true
+                });
                 assert.equal(1, r.matchedCount);
                 assert.equal(0, r.upsertedCount);
                 console.log(`gave ${message.author.tag} ${score} points`);
-            }catch(err){
+            } catch (err) {
                 console.log(err);
             }
             client.close();
@@ -134,12 +155,37 @@ Client.on("message", message => {
     }
 })
 
-Client.login('NTUyODQ1MDI4NzU0NTg3Njgw.XN_Smw.RXNjqAxYKpdZeQ9qjswmsM0uyiE');
+DiscordClient.login(DiscordToken);
 
 /**
  * TWITCH HANDELERS
  */
 
+//register Event Handlers
+TwitchClient.on('message', onTwitchMessage);
+TwitchClient.on('connected', onTwitchConnected);
+
+//Connect to Twitch
+TwitchClient.connect();
+
+/** Event Handlers **/
+
+//Called when connected to Twitch Chat
+function onTwitchConnected(addr, port) {
+    console.log(`Connected to Twitch Chat at ${addr}:${port}`);
+}
+
+//Called when a message is sent in Twitch Chat
+function onTwitchMessage(target, context, msg, self) {
+    //ignore commands from the bot
+    if (self) {
+        return;
+    }
+
+    //get the command sent
+    const command = msg.trim();
+    
+}
 /**
  * Other Functions for core functionality
  */
@@ -152,3 +198,4 @@ function generateScore() {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+//END OF LINE

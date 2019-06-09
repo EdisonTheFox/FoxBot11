@@ -4,15 +4,25 @@
   "description": "[![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com)\r [![forthebadge](https://forthebadge.com/images/badges/60-percent-of-the-time-works-every-time.svg)](https://forthebadge.com)",
   "main": "foxbot.js",
   "dependencies": {
+    "assert": "^2.0.0",
     "discord.js": "^11.4.2",
+<<<<<<< HEAD
     "mysql": "^2.17.1",
     "mongodb":"^3.2.6"
+=======
+    "mongodb": "^3.2.6",
+    "tmi.js": "^1.4.2"
+>>>>>>> database
   },
   "devDependencies": {},
   "scripts": {
     "install": "",
+<<<<<<< HEAD
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node .APP/foxbot.js"
+=======
+    "start": "node ./APP/foxbot.js"
+>>>>>>> database
   },
   "repository": {
     "type": "git",

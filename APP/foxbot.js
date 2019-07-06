@@ -184,7 +184,31 @@ function onTwitchMessage(target, context, msg, self) {
 
     //get the command sent
     const command = msg.trim();
-    
+
+    //THE COMMANDS
+    if (command === '!commands') {
+        TwitchClient.say(target, 'The following commands are available: !discord, !twitter, !rutland, !games, !ch, !as2');
+        console.log(`**Executed ${command} command**`);
+    } else if (command === '!discord') {
+        TwitchClient.say(target, 'Come join the den at https://discord.gg/7CmKjjf');
+        console.log(`**Executed ${command} command**`);
+    } else if (command === '!twitter') {
+        TwitchClient.say(target, 'Come follow Edison on Twitter @ https://twitter.com/edisonthefox');
+        console.log(`**Executed ${command} command**`);
+    } else if (command === '!rutland') {
+        TwitchClient.say(target, 'Rutland is a conspiracy');
+        console.log(`**Executed ${command} command**`);
+    } else if (command === '!games') {
+        TwitchClient.say(target, 'The games Edison is playing currently are Clone Hero and Audio Surf 2. if you want to know more about Clone Hero or Audio Surf 2 use !ch or !as2');
+        console.log(`**Executed ${command} command**`)
+    } else if (command === '!ch') {
+        TwitchClient.say(target, 'Clone Hero is a fan project to build a better Guitar Hero and to more easilly allow for Custom Songs to be imported into the game. If you need even more info head on over to the Clone Hero Discord server here: https://discord.gg/Hsn4Cgu');
+        console.log(`**Executed ${command} command**`);
+    } else if (command === '!as2') {
+        TwitchClient.say(target, 'Edisons copy of Audio Surf 2 is using a modified file to allow the YouTube integration to be used meaning requests will open soon! If you want to know even more about Audio Surf 2, visit the Discord server here: https://discord.gg/nBGkqdF');
+        console.log(`**Executed ${command} command**`);
+    }
+
 }
 /**
  * Other Functions for core functionality

@@ -3,7 +3,7 @@
  */
 const Discord = require('discord.js');
 const DiscordClient = new Discord.Client();
-const DiscordToken = 'NTUyODQ1MDI4NzU0NTg3Njgw.XN_Smw.RXNjqAxYKpdZeQ9qjswmsM0uyiE';
+const DiscordToken = 'DISCORDTOKEN';
 const Calls = require('./Modules/discordCalls.js');
 const moderator = require('./Modules/discordModeration.js');
 const logger = require('./Modules/discordLogging');
@@ -11,7 +11,7 @@ const logger = require('./Modules/discordLogging');
  * Database APIs
  */
 const MongoClient = require('mongodb').MongoClient;
-const uri = 'mongodb+srv://foxbot:twihUBFp6nQkiySt@edisonthefox-4czwj.gcp.mongodb.net/test?retryWrites=true&w=majority';
+const uri = 'mongodb+srv://foxbot:/x/x/x/';
 
 /**
  * Twitch APIs
@@ -20,7 +20,7 @@ const tmi = require('tmi.js');
 const opts = {
     identity: {
         username: 'FoxBot11',
-        password: 'oauth:k9x8qymrea5xkhv197mncoe5f3xfxc'
+        password: 'oauth:TOKEN'
     },
     channels: [
         'edisonthefox'
